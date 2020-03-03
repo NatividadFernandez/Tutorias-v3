@@ -3,6 +3,8 @@ package org.iesalandalus.programacion.tutorias.mvc.modelo.dominio;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.iesalandalus.programacion.tutorias.mvc.modelo.negocio.ficheros.Alumnos;
+
 public class Alumno implements Serializable {
 
 	private static final String ER_NOMBRE = "(?=.*\\s.+)(?![a-zA-Zñáéíóúü]\\s)(?!.*\\s[a-zA-Zñáéíóúü]\\s)(?!.*\\s[a-zA-Zñáéíóúü]$).[a-zA-Zñáéíóúü\\s]+";
@@ -19,6 +21,7 @@ public class Alumno implements Serializable {
 		setCorreo(correo);
 		incremientaUltimoIdentificador();
 		setExpediente();
+
 	}
 
 	// Constructor copia
@@ -28,7 +31,12 @@ public class Alumno implements Serializable {
 		}
 		setNombre(alumno.getNombre());
 		setCorreo(alumno.getCorreo());
-		setExpediente();
+		this.expediente = alumno.getExpediente();
+
+	}
+	
+	public void comprobarUltimoIdentificador() {
+		incremientaUltimoIdentificador();
 	}
 
 	// Alumno ficticio
@@ -148,6 +156,10 @@ public class Alumno implements Serializable {
 		return Objects.equals(correo, other.correo);
 	}
 
+	public static void comprobarUltimoIdentificador(int numeroIdentificador) {
+		ultimoIdentificador = numeroIdentificador;
+	}
+	
 	// to String
 	@Override
 	public String toString() {
