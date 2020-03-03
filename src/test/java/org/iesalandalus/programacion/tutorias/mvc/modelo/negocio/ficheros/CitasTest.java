@@ -41,7 +41,7 @@ public class CitasTest {
 	private static final String TAMANO_NO_ESPERADO = "El tamaño devuelto no es el esperado.";
 	private static final String CITA_NO_ESPERADA = "La cita devuelta no es la que debería ser.";
 	private static final String OBJETO_DEBERIA_SER_NULO = "No se debería haber creado el objeto.";
-	
+
 	private static Cita cita1;
 	private static Cita cita2;
 	private static Cita cita3;
@@ -51,13 +51,17 @@ public class CitasTest {
 	private static Cita cita7;
 	private static Cita cita8;
 	private static Cita citaRepetida;
-	
+
 	@BeforeClass
 	public static void asignarValoresAtributos() {
-		Sesion sesion1 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"), LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
-		Sesion sesion2 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"), LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
-		Sesion sesion3 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 2"), LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
-		Sesion sesion4 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 2"), LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+		Sesion sesion1 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"),
+				LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+		Sesion sesion2 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"),
+				LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+		Sesion sesion3 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 2"),
+				LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+		Sesion sesion4 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 2"),
+				LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
 		cita1 = new Cita(Alumno.getAlumnoFicticio("patricio@gmail.com"), sesion1, LocalTime.of(17, 15));
 		cita2 = new Cita(Alumno.getAlumnoFicticio("patricio@gmail.com"), sesion2, LocalTime.of(16, 0));
 		cita3 = new Cita(Alumno.getAlumnoFicticio("patricio@gmail.com"), sesion3, LocalTime.of(16, 15));
@@ -68,7 +72,7 @@ public class CitasTest {
 		cita8 = new Cita(Alumno.getAlumnoFicticio("bob@gmail.com"), sesion1, LocalTime.of(17, 30));
 		citaRepetida = new Cita(cita1);
 	}
-	
+
 	@Test
 	public void getDevuelveCitasOrdenadasPorSesionYPorNombre() {
 		ICitas citas = new Citas();
@@ -103,7 +107,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getSesionValidaDevuelveCitasSesionOrdenadas() {
 		ICitas citas = new Citas();
@@ -116,7 +120,8 @@ public class CitasTest {
 			citas.insertar(cita6);
 			citas.insertar(cita7);
 			citas.insertar(cita8);
-			Sesion sesion = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"), LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+			Sesion sesion = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"),
+					LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
 			List<Cita> citasSesionOrdendadas = citas.get(sesion);
 			assertThat(CITA_NO_ESPERADA, citasSesionOrdendadas.get(0), is(cita5));
 			assertThat(REFERENCIA_NO_ESPERADA, citasSesionOrdendadas.get(0), not(sameInstance(cita5)));
@@ -133,7 +138,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getSesionNulaLanzaExcepcion() {
 		ICitas citas = new Citas();
@@ -152,7 +157,7 @@ public class CitasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void getAlumnoValidoDevuelveCitasAlumnoOrdenadas() {
 		ICitas citas = new Citas();
@@ -179,7 +184,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getAlumnoNuloLanzaExcepcion() {
 		ICitas citas = new Citas();
@@ -211,7 +216,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarDosCitasValidasInsertaCitasCorrectamente() {
 		ICitas citas = new Citas();
@@ -227,7 +232,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarTresCitasValidasInsertaCitasCorrectamente() {
 		ICitas citas = new Citas();
@@ -246,7 +251,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarCitaNulaLanzaExcepcion() {
 		ICitas citas = new Citas();
@@ -260,7 +265,7 @@ public class CitasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarCitaRepetidaLanzaExcepcion() {
 		ICitas citas = new Citas();
@@ -303,7 +308,7 @@ public class CitasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarCitaExistenteBorraCitaCorrectamente() throws OperationNotSupportedException {
 		ICitas citas = new Citas();
@@ -377,7 +382,7 @@ public class CitasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void borrarCitaNoExistenteLanzaExcepcion() {
 		ICitas citas = new Citas();
@@ -404,7 +409,7 @@ public class CitasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarCitaNulaLanzaExcepcion() {
 		ICitas citas = new Citas();
@@ -419,7 +424,7 @@ public class CitasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void buscarCitaNulaLanzaExcepcion() {
 		ICitas citas = new Citas();

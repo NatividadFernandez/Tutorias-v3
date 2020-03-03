@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ProfesorTest {
-	
+
 	private static final String ERROR_NOMBRE_NULO = "ERROR: El nombre no puede ser nulo.";
 	private static final String ERROR_NOMBRE_NO_VALIDO = "ERROR: El nombre no tiene un formato válido.";
 	private static final String ERROR_DNI_NULO = "ERROR: El DNI no puede ser nulo.";
@@ -88,7 +88,7 @@ public class ProfesorTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorNombreValidoDniNoValidoCorreoValidoLanzaExcepcion() {
 		Profesor profesor = null;
@@ -156,7 +156,7 @@ public class ProfesorTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorNombreValidoDniValidoCorreoNoValidoLanzaExcepcion() {
 		Profesor profesor = null;
@@ -215,7 +215,7 @@ public class ProfesorTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorProfesorValidoCopiaProfesorCorrectamente() {
 		Profesor profesor1 = new Profesor(NOMBRE_JRJR, DNI_JRJR, CORREO_JRJR);
@@ -225,7 +225,7 @@ public class ProfesorTest {
 		assertThat(DNI_NO_ESPERADO, profesor2.getDni(), is(DNI_JRJR));
 		assertThat(CORREO_NO_ESPERADO, profesor2.getCorreo(), is(CORREO_JRJR));
 	}
-	
+
 	@Test
 	public void constructorProfesorNuloLanzaExcepcion() {
 		Profesor profesor = null;
@@ -239,13 +239,13 @@ public class ProfesorTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void getProfesorFicticioDniValidoDevuelveProfesorConDichoDni() {
 		Profesor profesor = Profesor.getProfesorFicticio(DNI_ARDR);
 		assertThat(DNI_NO_ESPERADO, profesor.getDni(), is(DNI_ARDR));
 	}
-	
+
 	@Test
 	public void getProfesorFicticionDniNoValidoLanzaExcepcion() {
 		Profesor profesor = null;
@@ -313,13 +313,15 @@ public class ProfesorTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void toStringDevuelveLaCadenaEsperada() {
 		Profesor profesor = new Profesor(NOMBRE_JRJR, DNI_JRJR, CORREO_JRJR);
-		assertThat(CADENA_NO_ESPERADA, profesor.toString(), is(String.format("nombre=%s (%s), DNI=%s, correo=%s", NOMBRE_JRJR, "JRJR", DNI_JRJR, CORREO_JRJR)));
+		assertThat(CADENA_NO_ESPERADA, profesor.toString(),
+				is(String.format("nombre=%s (%s), DNI=%s, correo=%s", NOMBRE_JRJR, "JRJR", DNI_JRJR, CORREO_JRJR)));
 		profesor = new Profesor(NOMBRE_MAL_ARDR, DNI_ARDR, CORREO_ARDR);
-		assertThat(CADENA_NO_ESPERADA, profesor.toString(), is(String.format("nombre=%s (%s), DNI=%s, correo=%s", NOMBRE_ARDR, "ARDR", DNI_ARDR, CORREO_ARDR)));
+		assertThat(CADENA_NO_ESPERADA, profesor.toString(),
+				is(String.format("nombre=%s (%s), DNI=%s, correo=%s", NOMBRE_ARDR, "ARDR", DNI_ARDR, CORREO_ARDR)));
 	}
 
 }

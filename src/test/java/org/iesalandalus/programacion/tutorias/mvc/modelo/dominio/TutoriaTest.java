@@ -12,7 +12,6 @@ import org.junit.Test;
 
 public class TutoriaTest {
 
-	
 	private static final String ERROR_NOMBRE_NULO = "ERROR: El nombre no puede ser nulo.";
 	private static final String ERROR_NOMBRE_NO_VALIDO = "ERROR: El nombre no tiene un formato válido.";
 	private static final String ERROR_PROFESOR_NULO = "ERROR: El profesor no puede ser nulo.";
@@ -31,12 +30,12 @@ public class TutoriaTest {
 	private static final String NOMBRE1 = "Resolución de dudas de la unidad 5";
 	private static final String NOMBRE2_MAL = "    Revisión tarea presencial 4   ";
 	private static final String NOMBRE2_BIEN = "Revisión tarea presencial 4";
-	
+
 	private static Profesor profesor1;
 	private static Profesor profesor2;
 	private static Tutoria tutoria1;
 	private static Tutoria tutoria2;
-	
+
 	@BeforeClass
 	public static void inicializaAtributos() {
 		profesor1 = new Profesor("Bob Esponja", "11223344B", "bob@gmail.com");
@@ -69,7 +68,7 @@ public class TutoriaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorProfesorValidoNombreNoValidoLanzaExcepcion() {
 		Tutoria tutoria = null;
@@ -102,7 +101,7 @@ public class TutoriaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorTutoriaValidaCopiaTutoriaCorrectamente() {
 		Tutoria tutoria1 = new Tutoria(profesor1, NOMBRE1);
@@ -113,7 +112,7 @@ public class TutoriaTest {
 		assertThat(REFERENCIA_NO_ESPERADA, tutoria1.getProfesor(), not(sameInstance(profesor1)));
 		assertThat(NOMBRE_NO_ESPERADO, tutoria2.getNombre(), is(NOMBRE1));
 	}
-	
+
 	@Test
 	public void constructorTutoriaNulaLanzaExcepcion() {
 		Tutoria tutoria = null;
@@ -127,10 +126,12 @@ public class TutoriaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-		
+
 	@Test
 	public void toStringDevuelveLaCadenaEsperada() {
-		assertThat(CADENA_NO_ESPERADA, tutoria1.toString(), is(String.format("profesor=%s, nombre=%s", profesor1, NOMBRE1)));
-		assertThat(CADENA_NO_ESPERADA, tutoria2.toString(), is(String.format("profesor=%s, nombre=%s", profesor2, NOMBRE2_BIEN)));
+		assertThat(CADENA_NO_ESPERADA, tutoria1.toString(),
+				is(String.format("profesor=%s, nombre=%s", profesor1, NOMBRE1)));
+		assertThat(CADENA_NO_ESPERADA, tutoria2.toString(),
+				is(String.format("profesor=%s, nombre=%s", profesor2, NOMBRE2_BIEN)));
 	}
 }

@@ -36,12 +36,12 @@ public class TutoriasTest {
 	private static final String TAMANO_NO_ESPERADO = "El tamaño devuelto no es el esperado.";
 	private static final String TUTORIA_NO_ESPERADA = "La tutoría devuelta no es la que debería ser.";
 	private static final String OBJETO_DEBERIA_SER_NULO = "No se debería haber creado el objeto.";
-	
+
 	private static Tutoria tutoria1;
 	private static Tutoria tutoria2;
 	private static Tutoria tutoria3;
 	private static Tutoria tutoriaRepetida;
-	
+
 	@BeforeClass
 	public static void asignarValoresAtributos() {
 		tutoria1 = new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Resolución de dudas Unidad 6");
@@ -49,7 +49,7 @@ public class TutoriasTest {
 		tutoria3 = new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Resolución de dudas Unidad 5");
 		tutoriaRepetida = new Tutoria(tutoria1);
 	}
-	
+
 	@Test
 	public void getDevuelveTutoriasOrdenadasPorDniProfesorYPorNombreTutoria() {
 		ITutorias tutorias = new Tutorias();
@@ -69,8 +69,7 @@ public class TutoriasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
-	
+
 	@Test
 	public void getProfesorValidoDevuelveTutoriasProfesorOrdenadasPorNombreTutoria() {
 		ITutorias tutorias = new Tutorias();
@@ -88,7 +87,7 @@ public class TutoriasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getProfesorNoValidoLanzaExcepcion() {
 		ITutorias tutorias = new Tutorias();
@@ -106,7 +105,7 @@ public class TutoriasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarTutoriaValidaConTutoriasVaciasInsertaTutoriaCorrectamente() {
 		ITutorias tutorias = new Tutorias();
@@ -119,7 +118,7 @@ public class TutoriasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarDosTutoriasValidasInsertaTutoriasCorrectamente() {
 		ITutorias tutorias = new Tutorias();
@@ -135,7 +134,7 @@ public class TutoriasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarTresTutoriasValidasInsertaTutoriasCorrectamente() {
 		ITutorias tutorias = new Tutorias();
@@ -154,7 +153,7 @@ public class TutoriasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarTutoriaNulaLanzaExcepcion() {
 		ITutorias tutorias = new Tutorias();
@@ -168,7 +167,7 @@ public class TutoriasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarTutoriaRepetidaLanzaExcepcion() {
 		ITutorias tutorias = new Tutorias();
@@ -211,7 +210,7 @@ public class TutoriasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarTutoriaExistenteBorraTutoriaCorrectamente() throws OperationNotSupportedException {
 		ITutorias tutorias = new Tutorias();
@@ -285,7 +284,7 @@ public class TutoriasTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void borrarTutoriaNoExistenteLanzaExcepcion() {
 		ITutorias citas = new Tutorias();
@@ -312,7 +311,7 @@ public class TutoriasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarTutoriaNulaLanzaExcepcion() {
 		ITutorias tutorias = new Tutorias();
@@ -327,7 +326,7 @@ public class TutoriasTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void buscarTutoriaNulaLanzaExcepcion() {
 		ITutorias tutorias = new Tutorias();

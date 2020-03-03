@@ -34,7 +34,7 @@ public class Alumno implements Serializable {
 		this.expediente = alumno.getExpediente();
 
 	}
-	
+
 	public void comprobarUltimoIdentificador() {
 		incremientaUltimoIdentificador();
 	}
@@ -159,7 +159,7 @@ public class Alumno implements Serializable {
 	public static void comprobarUltimoIdentificador(int numeroIdentificador) {
 		ultimoIdentificador = numeroIdentificador;
 	}
-	
+
 	// to String
 	@Override
 	public String toString() {

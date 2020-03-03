@@ -37,7 +37,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ModeloFicherosTest {
-	
+
 	private static final String ERROR_TUTORIA_NULA = "ERROR: No se puede insertar una tutoría nula.";
 	private static final String ERROR_TUTORIA_PROFESOR_NO_EXISTENTE = "ERROR: No existe el profesor de esta tutoría.";
 	private static final String ERROR_SESION_NULA = "ERROR: No se puede insertar una sesión nula.";
@@ -48,7 +48,7 @@ public class ModeloFicherosTest {
 	private static final String MENSAJE_NO_CORRECTO = "El mensaje devuelto por la excepción no es correcto.";
 	private static final String EXCEPCION_NO_PROCEDE = "No debería haber saltado la excepción.";
 	private static final String EXCEPCION_ESPERADA = "Debería haber saltado la excepción.";
-	
+
 	private static Alumno alumnoExistente;
 	private static Alumno alumnoNoExistente;
 	private static Profesor profesorExistente;
@@ -58,15 +58,21 @@ public class ModeloFicherosTest {
 	private static Sesion sesionExistente;
 	private static Sesion sesionNoExistente;
 	private static Cita cita;
-	
-	@InjectMocks private static IModelo modelo = new Modelo(FactoriaFuenteDatos.FICHEROS.crear());
-	
-	@Mock private Alumnos alumnosSimulados;
-	@Mock private Profesores profesoresSimulados;
-	@Mock private Tutorias tutoriasSimuladas;
-	@Mock private Sesiones sesionesSimuladas;
-	@Mock private Citas citasSimuladas;
-	
+
+	@InjectMocks
+	private static IModelo modelo = new Modelo(FactoriaFuenteDatos.FICHEROS.crear());
+
+	@Mock
+	private Alumnos alumnosSimulados;
+	@Mock
+	private Profesores profesoresSimulados;
+	@Mock
+	private Tutorias tutoriasSimuladas;
+	@Mock
+	private Sesiones sesionesSimuladas;
+	@Mock
+	private Citas citasSimuladas;
+
 	@BeforeClass
 	public static void asignarValoresAtributos() {
 		alumnoExistente = Alumno.getAlumnoFicticio("bob@gmail.com");
@@ -79,22 +85,24 @@ public class ModeloFicherosTest {
 		sesionNoExistente = Sesion.getSesionFicticia(tutoriaNoExistente, LocalDate.now().plusDays(1));
 		cita = new Cita(alumnoExistente, sesionExistente, LocalTime.of(16, 0));
 	}
-	
+
 	@Test
 	public void comenzarLlamaAlumnosComenzarProfesoresComenzarTutoriasComenzarSesionesComenzarCitasComenzar() {
 		modelo.comenzar();
-		InOrder orden = Mockito.inOrder(alumnosSimulados, profesoresSimulados, tutoriasSimuladas, sesionesSimuladas, citasSimuladas);
+		InOrder orden = Mockito.inOrder(alumnosSimulados, profesoresSimulados, tutoriasSimuladas, sesionesSimuladas,
+				citasSimuladas);
 		orden.verify(alumnosSimulados).comenzar();
 		orden.verify(profesoresSimulados).comenzar();
 		orden.verify(tutoriasSimuladas).comenzar();
 		orden.verify(sesionesSimuladas).comenzar();
 		orden.verify(citasSimuladas).comenzar();
 	}
-	
+
 	@Test
 	public void terminarLlamaAlumnosTerminarProfesoresTerminarTutoriasTerminarSesionesTerminarCitasTerminar() {
 		modelo.terminar();
-		InOrder orden = Mockito.inOrder(alumnosSimulados, profesoresSimulados, tutoriasSimuladas, sesionesSimuladas, citasSimuladas);
+		InOrder orden = Mockito.inOrder(alumnosSimulados, profesoresSimulados, tutoriasSimuladas, sesionesSimuladas,
+				citasSimuladas);
 		orden.verify(alumnosSimulados).terminar();
 		orden.verify(profesoresSimulados).terminar();
 		orden.verify(tutoriasSimuladas).terminar();
@@ -111,13 +119,13 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void buscarAlumnoLlamaAlumnosBuscar() {
 		modelo.buscar(alumnoExistente);
 		verify(alumnosSimulados).buscar(alumnoExistente);
 	}
-	
+
 	@Test
 	public void borrarAlumnoLlamaCitasGetAlumnoCitasBorrarAlumnosBorrar() {
 		try {
@@ -133,7 +141,7 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private List<Cita> simularComportamientoBorrarAlumnoConCitas() {
 		List<Cita> citasAlumno = new ArrayList<>();
 		citasAlumno.add(new Cita(alumnoExistente, sesionExistente, LocalTime.of(16, 0)));
@@ -142,13 +150,13 @@ public class ModeloFicherosTest {
 		when(citasSimuladas.get(alumnoExistente)).thenReturn(citasAlumno);
 		return citasAlumno;
 	}
-	
+
 	@Test
 	public void getAlumnosLlamaAlumnosGet() {
 		modelo.getAlumnos();
 		verify(alumnosSimulados).get();
 	}
-	
+
 	@Test
 	public void insertarProfesorLlamaProfesoresInsertar() {
 		try {
@@ -158,13 +166,13 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void buscarProfesorLlamaProfesoresBuscar() {
 		modelo.buscar(profesorExistente);
 		verify(profesoresSimulados).buscar(profesorExistente);
 	}
-	
+
 	@Test
 	public void borrarProfesorLlamaTutoriasGetProfesorTutoriasBorrarProfesoresBorrar() {
 		try {
@@ -180,7 +188,7 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private List<Tutoria> simularComportamientoBorrarProfesorConTutorias() {
 		List<Tutoria> tutoriasProfesor = new ArrayList<>();
 		tutoriasProfesor.add(new Tutoria(profesorExistente, "Tutoria 1"));
@@ -189,13 +197,13 @@ public class ModeloFicherosTest {
 		when(tutoriasSimuladas.get(profesorExistente)).thenReturn(tutoriasProfesor);
 		return tutoriasProfesor;
 	}
-	
+
 	@Test
 	public void getProfesoresLlamaProfesoresGet() {
 		modelo.getProfesores();
 		verify(profesoresSimulados).get();
 	}
-	
+
 	@Test
 	public void insertarTutoriaValidaLlamaProfesoresBuscarTutoriasInsertar() {
 		simularComportamientoInsertarTutoriaValida();
@@ -208,11 +216,11 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private void simularComportamientoInsertarTutoriaValida() {
 		when(profesoresSimulados.buscar(Profesor.getProfesorFicticio("11223344B"))).thenReturn(profesorExistente);
 	}
-	
+
 	@Test
 	public void insertarTutoriaProfesorNoExistenteLanzaExcepcion() {
 		Tutoria tutoriaProfesorNoExistenteTutoria = new Tutoria(profesorNoExistente, "Dudas");
@@ -224,11 +232,11 @@ public class ModeloFicherosTest {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_TUTORIA_PROFESOR_NO_EXISTENTE));
 		}
 	}
-	
+
 	private void simularComportamientoInsertarTutoriaProfesorNoExistente() {
 		when(profesoresSimulados.buscar(profesorNoExistente)).thenReturn(null);
 	}
-	
+
 	@Test
 	public void insertarTutoriaNulaLanzaExcepcion() {
 		Tutoria tutoriaNula = null;
@@ -241,13 +249,13 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void buscarTutoriaLlamaTutoriasBuscar() {
 		modelo.buscar(tutoriaExistente);
 		verify(tutoriasSimuladas).buscar(tutoriaExistente);
 	}
-	
+
 	@Test
 	public void borrarTutoriaLlamaSesionesGetTutoriaSesionesBorrarTutoriasBorrar() {
 		try {
@@ -263,7 +271,7 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private List<Sesion> simularComportamientoBorrarTutoriaConSesiones() {
 		List<Sesion> sesionesTutoria = new ArrayList<>();
 		sesionesTutoria.add(Sesion.getSesionFicticia(tutoriaExistente, LocalDate.now().plusDays(7)));
@@ -272,19 +280,19 @@ public class ModeloFicherosTest {
 		when(sesionesSimuladas.get(tutoriaExistente)).thenReturn(sesionesTutoria);
 		return sesionesTutoria;
 	}
-	
+
 	@Test
 	public void getTutoriasLlamaTutoriasGet() {
 		modelo.getTutorias();
 		verify(tutoriasSimuladas).get();
 	}
-	
+
 	@Test
 	public void getTutoriasProfesorLlamaTutoriasGetConParametroProfesor() {
 		modelo.getTutorias(profesorExistente);
 		verify(tutoriasSimuladas).get(profesorExistente);
 	}
-	
+
 	@Test
 	public void insertarSesionValidaLlamaTutoriasBuscarSesionesInsertar() {
 		simularComportamientoInsertarSesionValida();
@@ -297,11 +305,11 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private void simularComportamientoInsertarSesionValida() {
 		when(tutoriasSimuladas.buscar(tutoriaExistente)).thenReturn(tutoriaExistente);
 	}
-	
+
 	@Test
 	public void insertarSesionTutoriaNoExistenteLanzaExcepcion() {
 		Sesion sesionTutoriaNoExistente = Sesion.getSesionFicticia(tutoriaNoExistente, LocalDate.now().plusDays(1));
@@ -313,11 +321,11 @@ public class ModeloFicherosTest {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_SESION_TUTORIA_NO_EXISTENTE));
 		}
 	}
-	
+
 	private void simularComportamientoInsertarSesionTutoriaNoExistente() {
 		when(tutoriasSimuladas.buscar(tutoriaNoExistente)).thenReturn(null);
-	}	
-	
+	}
+
 	@Test
 	public void insertarSesionNulaLanzaExcepcion() {
 		Sesion sesionNula = null;
@@ -336,7 +344,7 @@ public class ModeloFicherosTest {
 		modelo.buscar(sesionExistente);
 		verify(sesionesSimuladas).buscar(sesionExistente);
 	}
-	
+
 	@Test
 	public void borrarSesionLlamaCitasGetSesionCitasBorrarSesionesBorrar() {
 		try {
@@ -352,28 +360,29 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private List<Cita> simularComportamientoBorrarSesionConCitas() {
 		List<Cita> citasSesion = new ArrayList<>();
 		citasSesion.add(new Cita(Alumno.getAlumnoFicticio("patricio@gmail.com"), sesionExistente, LocalTime.of(16, 0)));
 		citasSesion.add(new Cita(Alumno.getAlumnoFicticio("bob@gmail.com"), sesionExistente, LocalTime.of(16, 15)));
-		citasSesion.add(new Cita(Alumno.getAlumnoFicticio("calamardo@gmail.com"), sesionExistente, LocalTime.of(16, 30)));
+		citasSesion
+				.add(new Cita(Alumno.getAlumnoFicticio("calamardo@gmail.com"), sesionExistente, LocalTime.of(16, 30)));
 		when(citasSimuladas.get(sesionExistente)).thenReturn(citasSesion);
 		return citasSesion;
 	}
-	
+
 	@Test
 	public void getSesionesLlamaSesionesGet() {
 		modelo.getSesiones();
 		verify(sesionesSimuladas).get();
 	}
-	
+
 	@Test
 	public void getSesionesTutoriaLlamaSesionesGetConParametroTutoria() {
 		modelo.getSesiones(tutoriaExistente);
 		verify(sesionesSimuladas).get(tutoriaExistente);
 	}
-	
+
 	@Test
 	public void insertarCitaValidaLlamaAlumnosBuscarSesionesBuscarCitasInsertar() {
 		simularComportamientoInsertarCitaValida();
@@ -387,12 +396,12 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	private void simularComportamientoInsertarCitaValida() {
 		when(alumnosSimulados.buscar(alumnoExistente)).thenReturn(alumnoExistente);
 		when(sesionesSimuladas.buscar(sesionExistente)).thenReturn(sesionExistente);
 	}
-	
+
 	@Test
 	public void insertarCitaAlumnoNoExistenteLanzaExcepcion() {
 		Cita citaAlumnoNoExistente = new Cita(alumnoNoExistente, sesionExistente, LocalTime.of(16, 0));
@@ -403,12 +412,12 @@ public class ModeloFicherosTest {
 		} catch (OperationNotSupportedException e) {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_CITA_ALUMNO_NO_EXISTENTE));
 		}
-	}	
-	
+	}
+
 	private void simularComportamientoInsertarCitaAlumnoNoExistente() {
 		when(alumnosSimulados.buscar(alumnoNoExistente)).thenReturn(null);
 	}
-	
+
 	@Test
 	public void insertarCitaSesionNoExistenteLanzaExcepcion() {
 		Cita citaSesionNoExistente = new Cita(alumnoExistente, sesionNoExistente, LocalTime.of(16, 0));
@@ -419,14 +428,13 @@ public class ModeloFicherosTest {
 		} catch (OperationNotSupportedException e) {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_CITA_SESION_NO_EXISTENTE));
 		}
-	}	
-	
+	}
+
 	private void simularComportamientoInsertarCitaSesionNoExistente() {
 		when(alumnosSimulados.buscar(alumnoExistente)).thenReturn(alumnoExistente);
 		when(sesionesSimuladas.buscar(sesionNoExistente)).thenReturn(null);
 	}
-	
-	
+
 	@Test
 	public void insertarCitaNulaLanzaExcepcion() {
 		Cita citaNula = null;
@@ -439,13 +447,13 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void buscarCitaLlamaCitasBuscar() {
 		modelo.buscar(cita);
 		verify(citasSimuladas).buscar(cita);
 	}
-	
+
 	@Test
 	public void borrarCitaLlamaCitasBorrar() {
 		try {
@@ -454,23 +462,23 @@ public class ModeloFicherosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getCitasLlamaCitasGet() {
 		modelo.getCitas();
 		verify(citasSimuladas).get();
 	}
-	
+
 	@Test
 	public void getCitasAlumnoLlamaCitasGetConParametroAlumno() {
 		modelo.getCitas(alumnoExistente);
 		verify(citasSimuladas).get(alumnoExistente);
 	}
-	
+
 	@Test
 	public void getCitasSesionLlamaCitasGetConParametroSesion() {
 		modelo.getCitas(sesionExistente);
 		verify(citasSimuladas).get(sesionExistente);
 	}
-	
+
 }

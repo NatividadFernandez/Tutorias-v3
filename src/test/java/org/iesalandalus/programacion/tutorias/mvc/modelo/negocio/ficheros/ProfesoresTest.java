@@ -32,12 +32,12 @@ public class ProfesoresTest {
 	private static final String REFERENCIA_NO_ESPERADA = "La referencia devuelta es la misma que la pasada.";
 	private static final String TAMANO_NO_ESPERADO = "El tamaño devuelto no es el esperado.";
 	private static final String PROFESOR_NO_ESPERADO = "El profesor devuelto no es la que debería ser.";
-	
+
 	private static Profesor profesor1;
 	private static Profesor profesor2;
 	private static Profesor profesor3;
 	private static Profesor profesorRepetido;
-	
+
 	@BeforeClass
 	public static void asignarValoresAtributos() {
 		profesor1 = new Profesor("Calamardo Tentáculos", "33445566R", "calamardo@gmail.com");
@@ -45,7 +45,7 @@ public class ProfesoresTest {
 		profesor3 = new Profesor("Bob Esponja", "11223344B", "bob@gmail.com");
 		profesorRepetido = new Profesor(profesor1);
 	}
-	
+
 	@Test
 	public void getDevuelveProfesoresOrdenadosPorDni() {
 		IProfesores profesores = new Profesores();
@@ -65,7 +65,7 @@ public class ProfesoresTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarProfesorValidoConProfesoresVaciosInsertaProfesorCorrectamente() {
 		IProfesores profesores = new Profesores();
@@ -78,7 +78,7 @@ public class ProfesoresTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarDosProfesoresValidosInsertaProfesoresCorrectamente() {
 		IProfesores profesores = new Profesores();
@@ -94,7 +94,7 @@ public class ProfesoresTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarTresProfesoresValidosInsertaProfesoresCorrectamente() {
 		IProfesores profesores = new Profesores();
@@ -113,7 +113,7 @@ public class ProfesoresTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarProfesorNuloLanzaExcepcion() {
 		IProfesores profesores = new Profesores();
@@ -127,7 +127,7 @@ public class ProfesoresTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarProfesorRepetidoLanzaExcepcion() {
 		IProfesores profesores = new Profesores();
@@ -170,7 +170,7 @@ public class ProfesoresTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarProfesorExistenteBorraProfesorCorrectamente() throws OperationNotSupportedException {
 		IProfesores profesores = new Profesores();
@@ -244,7 +244,7 @@ public class ProfesoresTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void borrarProfesorNoExistenteLanzaExcepcion() {
 		IProfesores citas = new Profesores();
@@ -271,7 +271,7 @@ public class ProfesoresTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarProfesorNuloLanzaExcepcion() {
 		IProfesores profesores = new Profesores();
@@ -286,7 +286,7 @@ public class ProfesoresTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void buscarProfesorNuloLanzaExcepcion() {
 		IProfesores profesores = new Profesores();

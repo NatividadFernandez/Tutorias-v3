@@ -32,12 +32,12 @@ public class AlumnosTest {
 	private static final String REFERENCIA_NO_ESPERADA = "La referencia devuelta es la misma que la pasada.";
 	private static final String TAMANO_NO_ESPERADO = "El tamaño devuelto no es el esperado.";
 	private static final String ALUMNO_NO_ESPERADO = "El alumno devuelto no es la que debería ser.";
-	
+
 	private static Alumno alumno1;
 	private static Alumno alumno2;
 	private static Alumno alumno3;
 	private static Alumno alumnoRepetido;
-	
+
 	@BeforeClass
 	public static void asignarValoresAtributos() {
 		alumno1 = new Alumno("Bob Esponja", "bob@gmail.com");
@@ -45,8 +45,7 @@ public class AlumnosTest {
 		alumno3 = new Alumno("Calamardo Tentáculos", "calamardo@gmail.com");
 		alumnoRepetido = new Alumno(alumno1);
 	}
-	
-	
+
 	@Test
 	public void getDevuelveAlumnosOrdenadosPorNombre() {
 		IAlumnos alumnos = new Alumnos();
@@ -63,7 +62,7 @@ public class AlumnosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarAlumnoValidoConAlumnosVaciosInsertaAlumnoCorrectamente() {
 		IAlumnos alumnos = new Alumnos();
@@ -76,7 +75,7 @@ public class AlumnosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarDosAlumnosValidosInsertaAlumnosCorrectamente() {
 		IAlumnos alumnos = new Alumnos();
@@ -92,7 +91,7 @@ public class AlumnosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarTresAlumnosValidosInsertaAlumnosCorrectamente() {
 		IAlumnos alumnos = new Alumnos();
@@ -111,7 +110,7 @@ public class AlumnosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarAlumnoNuloLanzaExcepcion() {
 		IAlumnos alumnos = new Alumnos();
@@ -125,7 +124,7 @@ public class AlumnosTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarAlumnoRepetidoLanzaExcepcion() {
 		IAlumnos alumnos = new Alumnos();
@@ -168,7 +167,7 @@ public class AlumnosTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarAlumnoExistenteBorraAlumnoCorrectamente() throws OperationNotSupportedException {
 		IAlumnos alumnos = new Alumnos();
@@ -242,7 +241,7 @@ public class AlumnosTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void borrarAlumnoNoExistenteLanzaExcepcion() {
 		IAlumnos citas = new Alumnos();
@@ -269,7 +268,7 @@ public class AlumnosTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarAlumnoNuloLanzaExcepcion() {
 		IAlumnos alumnos = new Alumnos();
@@ -284,7 +283,7 @@ public class AlumnosTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void buscarAlumnoNuloLanzaExcepcion() {
 		IAlumnos alumnos = new Alumnos();

@@ -39,7 +39,7 @@ public class SesionesTest {
 	private static final String TAMANO_NO_ESPERADO = "El tamaño devuelto no es el esperado.";
 	private static final String SESION_NO_ESPERADA = "La sesión devuelta no es la que debería ser.";
 	private static final String OBJETO_DEBERIA_SER_NULO = "No se debería haber creado el objeto.";
-	
+
 	private static Sesion sesion1;
 	private static Sesion sesion2;
 	private static Sesion sesion3;
@@ -47,18 +47,24 @@ public class SesionesTest {
 	private static Sesion sesion5;
 	private static Sesion sesion6;
 	private static Sesion sesionRepetida;
-	
+
 	@BeforeClass
 	public static void asignarValoresAtributos() {
-		sesion1 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"), LocalDate.now().plusDays(9), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
-		sesion2 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"), LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
-		sesion3 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"), LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
-		sesion4 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 1"), LocalDate.now().plusDays(9), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
-		sesion5 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 1"), LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
-		sesion6 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 2"), LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+		sesion1 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"),
+				LocalDate.now().plusDays(9), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
+		sesion2 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"),
+				LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
+		sesion3 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"),
+				LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
+		sesion4 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 1"),
+				LocalDate.now().plusDays(9), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
+		sesion5 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 1"),
+				LocalDate.now().plusDays(8), LocalTime.of(16, 0), LocalTime.of(18, 0), 30);
+		sesion6 = new Sesion(new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Tutoria 2"),
+				LocalDate.now().plusDays(7), LocalTime.of(16, 0), LocalTime.of(18, 0), 15);
 		sesionRepetida = new Sesion(sesion1);
 	}
-	
+
 	@Test
 	public void getDevuelveSesionesOrdenadasPorTutoriaYPorFechaSesion() {
 		ISesiones sesiones = new Sesiones();
@@ -87,7 +93,7 @@ public class SesionesTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getTutoriaValidaDevuelveSesionesTutoriaOrdenadasPorFechaSesion() {
 		ISesiones sesiones = new Sesiones();
@@ -95,7 +101,8 @@ public class SesionesTest {
 			sesiones.insertar(sesion1);
 			sesiones.insertar(sesion2);
 			sesiones.insertar(sesion3);
-			List<Sesion> sesionesTutoria = sesiones.get(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"));
+			List<Sesion> sesionesTutoria = sesiones
+					.get(new Tutoria(Profesor.getProfesorFicticio("22334455Y"), "Tutoria 1"));
 			assertThat(OPERACION_NO_REALIZADA, sesionesTutoria.get(0), is(sesion3));
 			assertThat(REFERENCIA_NO_ESPERADA, sesionesTutoria.get(0), not(sameInstance(sesion3)));
 			assertThat(OPERACION_NO_REALIZADA, sesionesTutoria.get(1), is(sesion2));
@@ -107,7 +114,7 @@ public class SesionesTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void getTutoriaNoValidaLanzaExcepcion() {
 		ISesiones sesiones = new Sesiones();
@@ -125,7 +132,7 @@ public class SesionesTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarSesionValidaConSesionesVaciasInsertaSesionCorrectamente() {
 		ISesiones sesiones = new Sesiones();
@@ -138,7 +145,7 @@ public class SesionesTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarDosSesionesValidasInsertaSesionesCorrectamente() {
 		ISesiones sesiones = new Sesiones();
@@ -154,7 +161,7 @@ public class SesionesTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarTresSesionesValidasInsertaSesionesCorrectamente() {
 		ISesiones sesiones = new Sesiones();
@@ -173,7 +180,7 @@ public class SesionesTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void insertarSesionNulaLanzaExcepcion() {
 		ISesiones sesiones = new Sesiones();
@@ -187,7 +194,7 @@ public class SesionesTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void insertarSesionRepetidaLanzaExcepcion() {
 		ISesiones sesiones = new Sesiones();
@@ -230,7 +237,7 @@ public class SesionesTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarSesionExistenteBorraSesionCorrectamente() throws OperationNotSupportedException {
 		ISesiones sesiones = new Sesiones();
@@ -304,7 +311,7 @@ public class SesionesTest {
 			fail(EXCEPCION_NO_PROCEDE);
 		}
 	}
-	
+
 	@Test
 	public void borrarSesionNoExistenteLanzaExcepcion() {
 		ISesiones sesiones = new Sesiones();
@@ -331,7 +338,7 @@ public class SesionesTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void borrarSesionNulaLanzaExcepcion() {
 		ISesiones sesiones = new Sesiones();
@@ -346,7 +353,7 @@ public class SesionesTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void buscarSesionNulaLanzaExcepcion() {
 		ISesiones sesiones = new Sesiones();

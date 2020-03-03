@@ -13,7 +13,7 @@ import java.time.LocalTime;
 import org.junit.Test;
 
 public class CitaTest {
-	
+
 	private static final String ERROR_HORA_NULA = "ERROR: La hora no puede ser nula.";
 	private static final String ERROR_HORA_FUERA_RANGO = "ERROR: La hora debe estar comprendida entre la hora de inicio y fin de la sesión.";
 	private static final String ERROR_HORA_NO_MULTIPLO = "ERROR: La hora debe comenzar en un múltiplo de los minutos de duración.";
@@ -35,8 +35,8 @@ public class CitaTest {
 	private static final String REFERENCIA_NO_ESPERADA = "La referencia devuelta es la misma que la pasada.";
 
 	private static final Sesion SESION = new Sesion(
-			new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Revisión tarea presencial1"), 
-				LocalDate.now().plusDays(1), LocalTime.of(16, 0), LocalTime.of(17, 0), 10);
+			new Tutoria(Profesor.getProfesorFicticio("11223344B"), "Revisión tarea presencial1"),
+			LocalDate.now().plusDays(1), LocalTime.of(16, 0), LocalTime.of(17, 0), 10);
 	private static final LocalTime HORA = LocalTime.of(16, 0);
 	private static final Alumno ALUMNO = new Alumno("Bob Esponja", "bob@gmail.com");
 
@@ -49,7 +49,7 @@ public class CitaTest {
 		assertThat(REFERENCIA_NO_ESPERADA, cita.getSesion(), not(sameInstance(SESION)));
 		assertThat(HORA_NO_ESPERADA, cita.getHora(), is(HORA));
 	}
-	
+
 	@Test
 	public void constructorAlumnoNoValidoSesionValidaHoraValidaLanzaExcepcion() {
 		Cita cita = null;
@@ -63,7 +63,7 @@ public class CitaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorAlumnoValidoSesionNoValidaHoraValidaLanzaExcepcion() {
 		Cita cita = null;
@@ -77,7 +77,7 @@ public class CitaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorAlumnoValidoSesionValidaHoraNoValidaLanzaExcepcion() {
 		Cita cita = null;
@@ -118,7 +118,7 @@ public class CitaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorCitaValidaCopiaCitaCorrectamente() {
 		Cita cita1 = new Cita(ALUMNO, SESION, HORA);
@@ -130,7 +130,7 @@ public class CitaTest {
 		assertThat(REFERENCIA_NO_ESPERADA, cita2.getSesion(), not(sameInstance(SESION)));
 		assertThat(HORA_NO_ESPERADA, cita2.getHora(), is(HORA));
 	}
-	
+
 	@Test
 	public void constructorCitaNulaLanzaExcepcion() {
 		Cita cita = null;
@@ -144,10 +144,11 @@ public class CitaTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void toStringDevuelveLaCadenaEsperada() {
 		Cita cita = new Cita(ALUMNO, SESION, HORA);
-		assertThat(CADENA_NO_ESPERADA, cita.toString(), is(String.format("alumno=%s, sesion=%s, hora=%s", ALUMNO, SESION, HORA.format(Cita.FORMATO_HORA))));
+		assertThat(CADENA_NO_ESPERADA, cita.toString(),
+				is(String.format("alumno=%s, sesion=%s, hora=%s", ALUMNO, SESION, HORA.format(Cita.FORMATO_HORA))));
 	}
 }

@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class AlumnoTest {
-	
+
 	private static final String ERROR_NOMBRE_NULO = "ERROR: El nombre no puede ser nulo.";
 	private static final String ERROR_NOMBRE_NO_VALIDO = "ERROR: El nombre no tiene un formato válido.";
 	private static final String ERROR_CORREO_NULO = "ERROR: El correo no puede ser nulo.";
@@ -30,10 +30,10 @@ public class AlumnoTest {
 	private static final String NOMBRE_MAL_ARDR = "ANDRÉS   RuBiO   dEl             río";
 	private static final String NOMBRE_ARDR = "Andrés Rubio Del Río";
 	private static final String CORREO_ARDR = "andres.rubio@iesalandalus.org";
-	
+
 	private static Alumno primerAlumno;
 	private static Alumno segundoAlumno;
-	
+
 	@BeforeClass
 	public static void inicializaAtributos() {
 		primerAlumno = new Alumno(NOMBRE_JRJR, CORREO_JRJR);
@@ -90,7 +90,7 @@ public class AlumnoTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorNombreValidoCorreoNoValidoLanzaExcepcion() {
 		Alumno alumno = null;
@@ -149,7 +149,7 @@ public class AlumnoTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void constructorAlumnoValidoCopiaAlumnoCorrectamente() {
 		Alumno alumno1 = new Alumno(NOMBRE_JRJR, CORREO_JRJR);
@@ -158,7 +158,7 @@ public class AlumnoTest {
 		assertThat(NOMBRE_NO_ESPERADO, alumno2.getNombre(), is(NOMBRE_JRJR));
 		assertThat(CORREO_NO_ESPERADO, alumno2.getCorreo(), is(CORREO_JRJR));
 	}
-	
+
 	@Test
 	public void constructorAlumnoNuloLanzaExcepcion() {
 		Alumno alumno = null;
@@ -172,13 +172,13 @@ public class AlumnoTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void getAlumnoFicticioDevuelveAlumnoConDichoCorreo() {
 		Alumno alumno = Alumno.getAlumnoFicticio("bob@gmail.com");
 		assertThat(CORREO_NO_ESPERADO, alumno.getCorreo(), is("bob@gmail.com"));
 	}
-	
+
 	@Test
 	public void getAlumnoFicticioCorreoNoValidoLanzaExcepcion() {
 		Alumno alumno = null;
@@ -237,11 +237,13 @@ public class AlumnoTest {
 			fail(TIPO_NO_CORRECTO);
 		}
 	}
-	
+
 	@Test
 	public void toStringDevuelveLaCadenaEsperada() {
-		assertThat(CADENA_NO_ESPERADA, primerAlumno.toString(), is(String.format("nombre=%s (%s), correo=%s, expediente=%s", NOMBRE_JRJR, "JRJR", CORREO_JRJR, "SP_JRJR_1")));
-		assertThat(CADENA_NO_ESPERADA, segundoAlumno.toString(), is(String.format("nombre=%s (%s), correo=%s, expediente=%s", NOMBRE_ARDR, "ARDR", CORREO_ARDR, "SP_ARDR_2")));
+		assertThat(CADENA_NO_ESPERADA, primerAlumno.toString(), is(String
+				.format("nombre=%s (%s), correo=%s, expediente=%s", NOMBRE_JRJR, "JRJR", CORREO_JRJR, "SP_JRJR_1")));
+		assertThat(CADENA_NO_ESPERADA, segundoAlumno.toString(), is(String
+				.format("nombre=%s (%s), correo=%s, expediente=%s", NOMBRE_ARDR, "ARDR", CORREO_ARDR, "SP_ARDR_2")));
 	}
 
 }
