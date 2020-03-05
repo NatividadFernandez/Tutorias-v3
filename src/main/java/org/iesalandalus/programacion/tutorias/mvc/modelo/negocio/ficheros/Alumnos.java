@@ -55,14 +55,14 @@ public class Alumnos implements IAlumnos {
 	}
 
 	public int identificadorAlumno(Alumno alumno) {
-		int aux = 0;
+		int expedienteAnterior = 0;
 		String[] ExpedienteAlumno = alumno.getExpediente().split("_");
 		String numeroExpediente = ExpedienteAlumno[2];
 		int expediente = Integer.parseInt(numeroExpediente);
-		if (expediente > aux) {
-			aux = expediente;
+		if (expediente > expedienteAnterior) {
+			expedienteAnterior = expediente;
 		}
-		return aux;
+		return expedienteAnterior;
 	}
 
 	@Override
